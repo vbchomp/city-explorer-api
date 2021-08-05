@@ -3,25 +3,52 @@
 console.log('Wazzup!');
 
 const express = require('express');
-
 const app = express();
-//change for lab 07 stuff
-// app.get('/', (request, response) => {
-//   response.send('Hello, from the outside');
-// });
+// do we need cors and dotenv?
 
-// app.get('/banana', (request, response) => {
-//   response.send(`Hello, ${name}.`);
-// });
+
+const weatherData = require('./data/weather.json');
+
+// specifying routes that server should be listening for
+app.get('/', (request, response) => {
+  //when get the request, send back these results
+  response.send('Hello, from the outside');
+});
+let urlToHitFromFrontEnd = 'http://localhost:3001/weather?lat=bird&lon=bee&searchQuery=buzz'
+app.get('/weather', (request, response) => {
+  //request from react frontend 
+  let lat = request.query.lat;
+  let lon = request.query.lon;
+  let searchQuery = request.query.searchQuery;
+  console.log(lat,lon,searchQuery);
+  let cityError = 'Please choose either Seattle, Paris, or Amman';
+  let foundCity = weatherData.find(city => city.city_name.toLowerCase() === searchQuery.toLowerCase())
+  if (searchQuery) {
+  // console.log(foundCity);
+  //repsonse from with 3 days and description in new array
+  response.send(foundCity.data.map(day => new Forecast(day)));
+  } else {
+    response.status(404).send(cityError);
+  }
+})
+
+app.get('/*', (request, response) => {
+  response.status(404).send('Something went wrong');
+});
 
 // app.get('/sayHello', (request, response) => {
 //   //can access query parameters using request.query
+//   //accessed with http://localhost:3001/sayHello?name=Heather
 //   let name = request.query.name;
 //   response.send(`Hello, ${name}.`);
 // });
 
-// app.get('/*', (request, response) => {
-//   response.status(404).send('Something went wrong');
-// });
+class Forecast {
+  constructor(day) {
+    this.description = `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description},`;
+    this.date = ` ${day.datetime}`;
+  }
+}
 
+// listen on port 3001 for requests
 app.listen(3001, () => console.log('listening on port 3001'));
