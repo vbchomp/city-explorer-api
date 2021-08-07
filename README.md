@@ -21,6 +21,8 @@
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
 Connor Boyce, Software Developer
+Ryan Gallaway, Instructor
+Kristian Esvelt, TA
 
 ## Time Estimates
 
