@@ -5,54 +5,53 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const axios = require('axios');
 //use for  dotenv variables that are undefined
 require('dotenv').config();
 
 // do we need cors and dotenv?
 app.use(cors());
 
-const weatherData = require('./data/weather.json');
+// const weatherData = require('./data/weather.json');
 
 // specifying routes that server should be listening for
 app.get('/', (request, response) => {
   //when get the request, send back these results
   response.send('Hello, from the outside');
 });
-// let urlToHitFromFrontEnd = 'http://localhost:3001/weather?lat=bird&lon=bee&searchQuery=buzz'
-app.get('/weather', (request, response) => {
+// let urlToHitFromFrontEnd = 'https://api.weatherbit.io/v2.0/forecast/daily?key=76845b61824646bdbf3f2ff4b16191e2&city=seattle';
+
+app.get('/weather', async (request, response) => {
   //request from react frontend 
   let lat = request.query.lat;
   let lon = request.query.lon;
-  let searchQuery = request.query.searchQuery;
-  console.log(lat,lon,searchQuery, 'comma here');
-  let cityError = 'Please choose either Seattle, Paris, or Amman';
-  // let foundCity = weatherData.find(city => city.lat === lat && city.lon === lon);
-  let foundCity = weatherData.find(city => city.city_name.toLowerCase() === searchQuery);
-  console.log("foundCity Array", foundCity);
-  if (foundCity) {
-  // console.log(foundCity);
-  //repsonse from with 3 days and description in new array
-  response.send(foundCity.data.map(day => new Forecast(day)));
-  } else {
-    response.status(404).send(cityError);
-  }
-})
+  // let searchQuery = request.query.searchQuery;
+  console.log('comma here');
+  let results = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}`);
+  console.log(results.data);
+  response.send(results.data.data.map(day => new Forecast(day)));
+});
 
-// app.get('/*', (request, response) => {
-//   response.status(404).send('Something went wrong');
-// });
 
-// app.get('/sayHello', (request, response) => {
-//   //can access query parameters using request.query
-//   //accessed with http://localhost:3001/sayHello?name=Heather
-//   let name = request.query.name;
-//   response.send(`Hello, ${name}.`);
-// });
+// https://api.themoviedb.org/3/search/movie?api_key=909aaa852b93939f2e3ffbc9d44417db&query=seattle
+app.get('/movies', async (request, response) => {
+  let results = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_KEY}&query=${request.query.city}`);
+  console.log(results.data);
+  response.send(results.data.results.map(movie => new Movie(movie)));
+}) 
+
 
 class Forecast {
   constructor(day) {
     this.description = `Low of ${day.low_temp}, high of ${day.high_temp} with ${day.weather.description},`;
     this.date = ` ${day.datetime}`;
+  }
+}
+
+class Movie {
+  constructor(movie) {
+    this.title = movie.title; 
+    this.src = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '';
   }
 }
 
