@@ -1,7 +1,7 @@
 # Project Name
 
 **Author**: Heather Bisgaard
-**Version**: 1.0.4 (increment the patch/fix version number if you make more commits past your first submission)
+**Version**: 1.0.5 (increment the patch/fix version number if you make more commits past your first submission)
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -19,7 +19,7 @@ Node JS server that connects a weather json file, takes the name of a city from 
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-React JS, React-Bootstrap, Axios, LocationIQ, Weather API, GitHub, Netlify, Trello...
+React JS, React-Bootstrap, Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello...
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -32,7 +32,7 @@ React JS, React-Bootstrap, Axios, LocationIQ, Weather API, GitHub, Netlify, Trel
 Connor Boyce, Software Developer
 Ryan Gallaway, Instructor
 Kristian Esvelt, TA
-JP Jones, Instructor, 
+JP Jones, Instructor,
 
 ## Time Estimates
 
