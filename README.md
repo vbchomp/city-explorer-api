@@ -29,10 +29,10 @@ React JS, React-Bootstrap, Axios, LocationIQ, Weather API, MovieDB, GitHub, Netl
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-Connor Boyce, Software Developer
-Ryan Gallaway, Instructor
-Kristian Esvelt, TA
-JP Jones, Instructor,
+- Connor Boyce, Software Developer, [CityExplorerUML](src/CityExplorerApiUML.png)
+- Ryan Gallaway, Instructor
+- Kristian Esvelt, TA
+- JP Jones, Instructor, helped me refactor and get my weather component working after discovering that I did not have to create a new city API in the City Explorer API repo.
 
 ## Time Estimates
 
