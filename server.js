@@ -9,7 +9,6 @@ const axios = require('axios');
 //use for  dotenv variables that are undefined
 require('dotenv').config();
 
-// do we need cors and dotenv?
 app.use(cors());
 
 // const weatherData = require('./data/weather.json');
@@ -56,4 +55,4 @@ class Movie {
 }
 
 // listen on port 3001 for requests
-app.listen(3001, () => console.log('listening on port 3001'));
+app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
