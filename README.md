@@ -2,6 +2,7 @@
 
 **Author**: Heather Bisgaard
 **Version**: 1.0.5 (increment the patch/fix version number if you make more commits past your first submission)
+**Heroku Deployed Site**: https://city-explorer-api-hbisgaard.herokuapp.com/
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -9,7 +10,7 @@ Node JS server that connects a weather json file, takes the name of a city from 
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
-1. Create .env file. Make this file to hold you API keys. If they are for the front end REACT app, you will need to type REACT_APP_ then a variable for the key. Then the = and paste the key in. See the SAMPLE.env file for an example. Then enter .env in your .gitignore file.
+1. Create .env file. Make this file to hold you API keys. If they are for the back end server app, you will need to type the variable for the key. Then the = and paste the key in. See the SAMPLE.env file for an example. Then enter .env in your .gitignore file.
 
 2. You will need to create a server component and 'npm i' all the node js components like dotenv, cors, and express.
 
@@ -19,7 +20,7 @@ Node JS server that connects a weather json file, takes the name of a city from 
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-React JS, React-Bootstrap, Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello...
+Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello...
 
 ## Change Log
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
@@ -29,10 +30,12 @@ React JS, React-Bootstrap, Axios, LocationIQ, Weather API, MovieDB, GitHub, Netl
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
 
-- Connor Boyce, Software Developer, [CityExplorerUML](src/CityExplorerApiUML.png)
+- Connor Boyce, Software Developer, [CityExplorerUML](data/CityExplorerApiUML.png)
 - Ryan Gallaway, Instructor
 - Kristian Esvelt, TA
 - JP Jones, Instructor, helped me refactor and get my weather component working after discovering that I did not have to create a new city API in the City Explorer API repo.
+- Willem Jacobs, Software Developer, helped me try to figure out why heroku deployment was not working.
+- Fizzo Pannosch, Grading TA, helped with the heroku debacle.
 
 ## Time Estimates
 
