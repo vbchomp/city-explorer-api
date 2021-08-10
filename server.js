@@ -17,14 +17,12 @@ const PORT = process.env.PORT;
 
 // const weatherData = require('./data/weather.json');
 
-// specifying routes that server should be listening for
-app.get('/', (request, response) => {
-  //when get the request, send back these results
-  response.send('Hello, from the outside');
-});
-// let urlToHitFromFrontEnd = 'https://api.weatherbit.io/v2.0/forecast/daily?key=76845b61824646bdbf3f2ff4b16191e2&city=seattle';
+let getMovies = async (request, response) => {
+  let results = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_KEY}&query=${request.query.city}`);
+  console.log(results.data);
+  response.send(results.data.results.map(movie => new Movie(movie)));
 
-app.get('/weather', async (request, response) => {
+let getWeather = async (request, response) => {
   //request from react frontend 
   let lat = request.query.lat;
   let lon = request.query.lon;
@@ -33,15 +31,22 @@ app.get('/weather', async (request, response) => {
   let results = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}`);
   console.log(results.data);
   response.send(results.data.data.map(day => new Forecast(day)));
+};  
+
+
+// specifying routes that server should be listening for
+app.get('/', (request, response) => {
+  //when get the request, send back these results
+  response.send('Hello, from the outside');
 });
+// let urlToHitFromFrontEnd = 'https://api.weatherbit.io/v2.0/forecast/daily?key=76845b61824646bdbf3f2ff4b16191e2&city=seattle';
+
+app.get('/weather', getWeather);
 
 
 // https://api.themoviedb.org/3/search/movie?api_key=909aaa852b93939f2e3ffbc9d44417db&query=seattle
-app.get('/movies', async (request, response) => {
-  let results = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_KEY}&query=${request.query.city}`);
-  console.log(results.data);
-  response.send(results.data.results.map(movie => new Movie(movie)));
-}) 
+app.get('/movies', getMovies);
+ 
 
 
 class Forecast {
