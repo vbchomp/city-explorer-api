@@ -4,12 +4,16 @@
 
 const express = require('express');
 const app = express();
+
 const cors = require('cors');
-const axios = require('axios');
+app.use(cors());
+
 //use for  dotenv variables that are undefined
 require('dotenv').config();
 
-app.use(cors());
+const axios = require('axios');
+
+const PORT = process.env.PORT;
 
 // const weatherData = require('./data/weather.json');
 
@@ -49,8 +53,8 @@ class Forecast {
 
 class Movie {
   constructor(movie) {
-    this.title = movie.title; 
     this.src = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '';
+    this.title = movie.title; 
   }
 }
 
