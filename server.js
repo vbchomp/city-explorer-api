@@ -1,37 +1,38 @@
 'use strict';
 
-// console.log('Wazzup!');
-
+require('dotenv').config();
 const express = require('express');
 const app = express();
-
 const cors = require('cors');
 app.use(cors());
 
-//use for  dotenv variables that are undefined
-require('dotenv').config();
-
-const axios = require('axios');
-
 const PORT = process.env.PORT;
 
-const getWeather = require('./modules/getWeather.js');
-const getMovies = require('./modules/getMovies.js');
+const weather = require('./modules/weather.js');
+const movie = require('./modules/movie.js');
 
-// const weatherData = require('./data/weather.json');
+app.get('/weather', weatherHandler);
 
+app.get('/movies', movieHandler);
 
-// specifying routes that server should be listening for
-app.get('/', (request, response) => {
-  //when get the request, send back these results
-  response.send('Hello, from the outside');
-});
-// let urlToHitFromFrontEnd = 'https://api.weatherbit.io/v2.0/forecast/daily?key=76845b61824646bdbf3f2ff4b16191e2&city=seattle';
+function weatherHandler(request, response) {
+  const { lat, lon } = request.query;
+  weather(lat, lon)
+  .then(summaries => response.send(summaries))
+  .catch((error) => {
+    console.error(error);
+    response.status(200).send('Sorry. Something went wrong!')
+  });
+}  
 
-app.get('/weather', getWeather);
+function movieHandler(request, response) {
+  const { city } = request.query;
+  movie(city)
+  .then(summaries => response.send(summaries))
+  .catch((error) => {
+    console.error(error);
+    response.status(200).send('Sorry. Something went wrong!')
+  });
+}  
 
-// https://api.themoviedb.org/3/search/movie?api_key=909aaa852b93939f2e3ffbc9d44417db&query=seattle
-app.get('/movies', getMovies);
-
-// listen on port 3001 for requests
-app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`));
+app.listen(process.env.PORT, () => console.log(`Server up on ${PORT}`));
