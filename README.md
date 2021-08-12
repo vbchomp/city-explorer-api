@@ -2,7 +2,7 @@
 
 **Author**: Heather Bisgaard
 **Version**: 1.0.5 (increment the patch/fix version number if you make more commits past your first submission)
-**Heroku Deployed Site**: https://city-explorer-api-hbisgaard.herokuapp.com/
+[**Heroku Deployed Site**:](https://city-explorer-api-hbisgaard.herokuapp.com/)
 
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for this class. (i.e. What's your problem domain?) -->
@@ -18,11 +18,14 @@ Node JS server that connects a weather json file, takes the name of a city from 
 
 4. You will need to create endpoints for your APIs.
 
+5. Your server cache would get reset when your server restarts, when you clear your cache, when you redeploy.
+
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
-Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello...
+Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello..
 
 ## Change Log
+
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
@@ -36,18 +39,19 @@ Axios, LocationIQ, Weather API, MovieDB, GitHub, Netlify, Heroku, Trello...
 - JP Jones, Instructor, helped me refactor and get my weather component working after discovering that I did not have to create a new city API in the City Explorer API repo.
 - Willem Jacobs, Software Developer, helped me try to figure out why heroku deployment was not working.
 - Fizzo Pannosch, Grading TA, helped with the heroku debacle.
+- Chance Harmon and Hexx King, TAs, helped figure out how to refactor for cache storage on server since I had set up my getMovies component a little too compactly. I did not know how to divide up my axios.get callback into an if, else statement to allow for the cache to conditionally go through the movies to see if they were in storage yet or not.
 
 ## Time Estimates
 
 Name of feature: Setup
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete:
 
-Start time: 
+Start time:
 
-Finish time: 
+Finish time:
 
-Actual time needed to complete: 
+Actual time needed to complete:
 
 ---
 
